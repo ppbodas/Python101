@@ -56,7 +56,7 @@ class LinkedList:
 
             if new_head is None:
                 new_head = self.head
-            if prev_tail is not None:
+            if prev_tail:
                 prev_tail.next_node = self.head
 
             prev_tail = self.tail
