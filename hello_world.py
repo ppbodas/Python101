@@ -66,7 +66,7 @@ def max_heap_101():
     print(f"Max heap Example")
 
     # Max heap based on string char length
-    l1 = ["PB", "Anagha", "Anay"]
+    l1 = ["Apple", "Kiwi", "Pineapple"]
     l = [(-len(name), name) for name in l1]
 
     heapq.heapify(l)
@@ -77,7 +77,7 @@ def min_heap_101():
     print(f"Min heap Example")
 
     # Min heap based on string char length
-    l1 = ["PB", "Anagha", "Anay"]
+    l1 = ["Apple", "Kiwi", "Pineapple"]
     l = [(len(name), name) for name in l1]
 
     heapq.heapify(l)
