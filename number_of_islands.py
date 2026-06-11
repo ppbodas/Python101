@@ -31,8 +31,8 @@ def dfs(grid, i, j, visited):
         l_row = i + pair[0]
         l_col = j + pair[1]
 
-        if l_row < 0 or l_row >= rows: continue
-        if l_col < 0 or l_col >= cols: continue
+        if not 0 <= l_row < rows: continue
+        if not 0 <= l_col < cols: continue
 
         if grid[l_row][l_col] == "1":
             if visited[l_row][l_col] == -1:
