@@ -31,11 +31,12 @@ class LinkedList:
 
         prev = None
         self.tail = self.head
-        while self.head:
-            tmp = self.head.next_node
-            self.head.next_node = prev
-            prev = self.head
-            self.head = tmp
+        current = self.head
+        while current:
+            tmp = current.next_node
+            current.next_node = prev
+            prev = current
+            current = tmp
 
         self.head = prev
 
