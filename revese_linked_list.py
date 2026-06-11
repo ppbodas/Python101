@@ -27,31 +27,65 @@ class LinkedList:
 
     def reverse(self):
         if not self.head:
-            return None
+            return
 
         prev = None
-        self.tail = self.head
         current = self.head
+        self.tail = self.head
         while current:
             tmp = current.next_node
             current.next_node = prev
             prev = current
             current = tmp
-
         self.head = prev
 
+    def reverse_k(self, k):
+        new_head = None
+        prev_tail = None
+
+        while self.head:
+            k_th = self.get_kth_node(self.head, k)
+            if not k_th:
+                if prev_tail:
+                    prev_tail.next_node = self.head
+                break
+
+            next_group = k_th.next_node
+            k_th.next_node = None
+            self.reverse()
+
+            if new_head is None:
+                new_head = self.head
+            if prev_tail is not None:
+                prev_tail.next_node = self.head
+
+            prev_tail = self.tail
+            self.head = next_group
+
+        if new_head:
+            self.head = new_head
+
+    def get_kth_node(self, node, k):
+        cur = node
+        while cur and k>1:
+            cur = cur.next_node
+            k = k -1
+
+        if k == 1:
+            return cur
+        else:
+            return None
 
 
 
 def main():
     ll = LinkedList()
-    ll.add_node(Node(5, None))
-    ll.add_node(Node(15, None))
-    ll.add_node(Node(25, None))
+    for i in range(1, 11):
+        ll.add_node(Node(i * 10, None))
 
-    ll.print_list()
+    # ll.print_list()
 
-    ll.reverse()
+    ll.reverse_k(3)
     ll.print_list()
 
 if __name__ == "__main__":
