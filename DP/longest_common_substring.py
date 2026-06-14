@@ -9,7 +9,7 @@ def longest_common_substring(s1, s2):
                 out = current
                 max_str = s1[i-out + 1: i + 1]
 
-    print(max_str)
+    #print(max_str)
     return out
 
 def longest_common_substring_recur(s1, s2, i, j, dp):
@@ -26,18 +26,24 @@ def longest_common_substring_recur(s1, s2, i, j, dp):
 
 
 def longest_common_subsequence(s1, s2):
-    return longest_common_subsequence_recur(s1, s2, len(s1) - 1, len(s2) - 1)
+    dp = [len(s2) * [-1] for _ in range(len(s1))]
+
+    out =  longest_common_subsequence_recur(s1, s2, len(s1) - 1, len(s2) - 1, dp)
+    print (dp)
+    return out
 
 
-def longest_common_subsequence_recur(s1, s2, i, j):
+def longest_common_subsequence_recur(s1, s2, i, j,dp):
     if i < 0: return 0
     if j < 0: return 0
 
     if s1[i] == s2[j]:
-        return  1 + longest_common_subsequence_recur(s1, s2, i - 1, j - 1)
+        dp[i][j] =  1 + longest_common_subsequence_recur(s1, s2, i - 1, j - 1, dp)
     else:
-        return max(longest_common_subsequence_recur(s1, s2, i, j - 1),
-                        longest_common_subsequence_recur(s1, s2, i - 1, j))
+        dp[i][j] = max(longest_common_subsequence_recur(s1, s2, i, j - 1, dp),
+                        longest_common_subsequence_recur(s1, s2, i - 1, j, dp))
+
+    return dp[i][j]
 
 
 if __name__ == "__main__":
