@@ -42,6 +42,10 @@ def main():
     a = 10  # 0b1010
     b = 4   # 0b0100
 
+    # Print binary representation
+    print(bin(a))  # 0b1010
+    print(bin(b))  # 0b100
+
     print(a & b)   # AND        -> 0
     print(a | b)   # OR         -> 14
     print(a ^ b)   # XOR        -> 14
